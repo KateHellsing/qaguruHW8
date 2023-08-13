@@ -8,7 +8,7 @@ public class TextBoxTests extends TestBase {
 
     @Test
     void fillFormTest() {
-        textBoxPage.openPage()
+        textBoxPage.openPage().removeBanner()
                 .seUserName("Kate Hell")
                 .setUserEmail("kate@test.ru")
                 .setCurrentAddress("Lenina 666, Moscow, Russia")

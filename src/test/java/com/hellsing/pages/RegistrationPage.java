@@ -1,22 +1,22 @@
 package com.hellsing.pages;
 
 import com.codeborne.selenide.SelenideElement;
-import com.hellsing.pages.components.CelendarComponent;
+import com.hellsing.pages.components.CalendarComponent;
+import com.hellsing.pages.components.ResultsModal;
 
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
-public class RegistratioPage {
+public class RegistrationPage {
 
-    CelendarComponent calendar = new CelendarComponent();
+    ResultsModal resultsModal = new ResultsModal();
 
     SelenideElement
             firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             userEmailInput = $("#userEmail"),
-            genterWrapperInput = $("#genterWrapper"),
+            genterWrapper = $("#genterWrapper"),
             userNumberInput = $("#userNumber"),
             birthDateInput = $("#dateOfBirthInput"),
             hobbiesWrapper = $("#hobbiesWrapper"),
@@ -28,113 +28,113 @@ public class RegistratioPage {
             city = $("#stateCity-wrapper #city"),
             cityInput = $("#city"),
             addFormSubmit = $("#submit"),
-            thanksText = $("#example-modal-sizes-title-lg"),
-            tableResponsive = $(".table-responsive"),
-            closeLargeModal = $("#closeLargeModal");
-    public RegistratioPage openPage() {
+            closeModal = $("#closeLargeModal");
+    public RegistrationPage openPage() {
         open("/automation-practice-form");
-        // код для скрытия рекламы и футер
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
 
         return this;
     }
+    public RegistrationPage removeBanner() {
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
+        return this;
+    }
 
-    public RegistratioPage setFirstName(String value) {
+    public RegistrationPage setFirstName(String value) {
         firstNameInput.setValue(value);
 
         return this;
     }
 
-    public RegistratioPage setLastName(String value) {
+    public RegistrationPage setLastName(String value) {
         lastNameInput.setValue(value);
 
         return this;
     }
 
-    public RegistratioPage setUserEmail(String value) {
+    public RegistrationPage setUserEmail(String value) {
         userEmailInput.setValue(value);
 
         return this;
     }
 
-    public RegistratioPage setGender(String value) {
-        genterWrapperInput.$(byText(value)).click();
+    public RegistrationPage setGender(String value) {
+        genterWrapper.$(byText(value)).click();
 
         return this;
     }
 
-    public RegistratioPage setUserNumber(String value) {
+    public RegistrationPage setUserNumber(String value) {
         userNumberInput.setValue(value);
 
         return this;
     }
 
-    public RegistratioPage setBirthDate(String day, String month, String year) {
+    public RegistrationPage setBirthDate(String day, String month, String year) {
         birthDateInput.click();
-        calendar.setDate(day, month, year);
+        new CalendarComponent().setDate(day, month, year);
 
         return this;
     }
 
-    public RegistratioPage setUserHobbies(String value) {
+    public RegistrationPage setUserHobbies(String value) {
         hobbiesWrapper.$(byText(value)).click();
 
         return this;
     }
 
-    public RegistratioPage setUploadPicture(String value) {
+    public RegistrationPage setUploadPicture(String value) {
         uploadPicture.uploadFromClasspath(value);
 
         return this;
     }
 
-    public RegistratioPage setCurrentAddress(String value) {
+    public RegistrationPage setCurrentAddress(String value) {
         currentAddressInput.setValue(value);
 
         return this;
     }
 
-    public RegistratioPage setSubjectsInput(String value) {
+    public RegistrationPage setSubjectsInput(String value) {
         subjectsInput.setValue(value).pressEnter();
 
         return this;
     }
 
-    public RegistratioPage choiceState(String value) {
+    public RegistrationPage choiceState(String value) {
         state.click();
         stateInput.$(byText(value)).click();
 
         return this;
     }
 
-    public RegistratioPage choiceCity(String value) {
+    public RegistrationPage choiceCity(String value) {
         city.click();
         cityInput.$(byText(value)).click();
 
         return this;
     }
 
-    public RegistratioPage clickSubmit() {
+    public RegistrationPage clickSubmit() {
         addFormSubmit.click();
 
         return this;
     }
 
-    public RegistratioPage thxForm(String value) {
-        thanksText.shouldHave(text(value));
+    public RegistrationPage verifyRegistrationResultModalAppears() {
+        resultsModal.verifyModal();
 
         return this;
     }
 
-    public RegistratioPage checkResult(String value) {
-        tableResponsive.shouldHave(text(value));
+    public RegistrationPage verifyResult(String key) {
+        resultsModal.verifyResult(key);
 
         return this;
     }
 
-    public RegistratioPage closeModal() {
-        closeLargeModal.click();
+    public RegistrationPage closeModalVerify() {
+        closeModal.click();
 
         return this;
     }

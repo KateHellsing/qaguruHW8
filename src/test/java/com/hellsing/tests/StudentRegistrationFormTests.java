@@ -1,16 +1,16 @@
 package com.hellsing.tests;
 
-import com.hellsing.pages.RegistratioPage;
+import com.hellsing.pages.RegistrationPage;
 import org.junit.jupiter.api.Test;
 
 
 public class StudentRegistrationFormTests extends TestBase {
 
-    RegistratioPage registratioPage = new RegistratioPage();
+    RegistrationPage registrationPage = new RegistrationPage();
 
     @Test
     void fillRegistrationFormTest() {
-        registratioPage.openPage()
+        registrationPage.openPage().removeBanner()
                 .setFirstName("Kate")
                 .setLastName("Hell")
                 .setUserEmail("kate@test.ru")
@@ -23,22 +23,20 @@ public class StudentRegistrationFormTests extends TestBase {
                 .setSubjectsInput("Arts")
                 .choiceState("NCR")
                 .choiceCity("Noida")
-                .clickSubmit()
+                .clickSubmit();
 
-        //проверка формы
-                .thxForm("Thanks for submitting the form");
-        registratioPage
-                .checkResult("Kate")
-                .checkResult("Hell")
-                .checkResult("kate@test.ru")
-                .checkResult("Female")
-                .checkResult("0999660235")
-                .checkResult("30 May,1998")
-                .checkResult("Arts")
-                .checkResult("Music")
-                .checkResult("hw1.JPG")
-                .checkResult("Lenina 666")
-                .checkResult("NCR Noida")
-                .closeModal();
+        registrationPage.verifyRegistrationResultModalAppears()
+                .verifyResult("Kate")
+                .verifyResult("Hell")
+                .verifyResult("kate@test.ru")
+                .verifyResult("Female")
+                .verifyResult("0999660235")
+                .verifyResult("30 May,1998")
+                .verifyResult("Arts")
+                .verifyResult("Music")
+                .verifyResult("hw1.JPG")
+                .verifyResult("Lenina 666")
+                .verifyResult("NCR Noida")
+                .closeModalVerify();
     }
 }
