@@ -29,14 +29,18 @@ public class RegistrationPage {
             cityInput = $("#city"),
             addFormSubmit = $("#submit"),
             closeModal = $("#closeLargeModal");
+
     public RegistrationPage openPage() {
         open("/automation-practice-form");
+        closeBanner();
 
         return this;
     }
-    public RegistrationPage removeBanner() {
+
+    public RegistrationPage closeBanner() {
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
+
         return this;
     }
 
@@ -101,14 +105,14 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage choiceState(String value) {
+    public RegistrationPage setState(String value) {
         state.click();
         stateInput.$(byText(value)).click();
 
         return this;
     }
 
-    public RegistrationPage choiceCity(String value) {
+    public RegistrationPage setCity(String value) {
         city.click();
         cityInput.$(byText(value)).click();
 

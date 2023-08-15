@@ -8,8 +8,8 @@ public class TextBoxTests extends TestBase {
 
     @Test
     void fillFormTest() {
-        textBoxPage.openPage().removeBanner()
-                .seUserName("Kate Hell")
+        textBoxPage.openPage()
+                .setUserName("Kate Hell")
                 .setUserEmail("kate@test.ru")
                 .setCurrentAddress("Lenina 666, Moscow, Russia")
                 .setPermanentAddress("Lenina 667, Moscow, Russia")

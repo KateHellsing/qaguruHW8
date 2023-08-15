@@ -10,7 +10,6 @@ public class ResultsModal {
         $(".modal-dialog").should(appear);
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
     }
-
     public void verifyResult(String key) {
         $(".table-responsive").$(byText(key));
     }

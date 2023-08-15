@@ -20,6 +20,8 @@ public class TextBoxPage {
 
     public TextBoxPage openPage() {
         open("/text-box");
+        removeBanner();
+
         return this;
     }
 
@@ -29,7 +31,7 @@ public class TextBoxPage {
         return this;
     }
 
-    public TextBoxPage seUserName(String value) {
+    public TextBoxPage setUserName(String value) {
         userName.setValue(value);
 
         return this;
